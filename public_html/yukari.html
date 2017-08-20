@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+body {
+  margin: 0;
+  padding: 30px;
+}
+div {
+  margin: 0;
+  padding: 0;
+}
+
+.yukari-wrapper {
+  margin: 0 20px;
+  width: 200px;
+  height: 170px;
+  border: 3px solid #cc6767;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px gray;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+.yukari-wrapper:active {
+  margin: 10px 10px 0 30px;
+  box-shadow: none;
+}
+.yukari {
+  background-image: url('images/yukari/yukari-split-9.gif');
+  background-repeat: no-repeat;
+  background-position: 0 0, 500px 0, 1000px 0, 1500px 0, 2000px 0, 2500px 0;
+  position: absolute;
+  left: 0;
+  margin: -80px 0 0 -50px;
+  width: 3000px;
+  height: 300px;
+}
+.yukari:active, .yukari > .yukari-preload {
+  background-image: url('images/yukari/yukari-split-9.gif'),
+    url('images/yukari/yukari-split-10.gif'),
+    url('images/yukari/yukari-split-11.gif'),
+    url('images/yukari/yukari-split-12.gif'),
+    url('images/yukari/yukari-split-13.gif'),
+    url('images/yukari/yukari-split-14.gif');
+}
+.yukari:active {
+  animation-name: yukari-background;
+  animation-duration: 0.9s;
+  animation-timing-function: step-start;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name: yukari-background;
+  -webkit-animation-duration: 0.9s;
+  -webkit-animation-timing-function: step-start;
+  -webkit-animation-iteration-count: infinite;
+
+  -ms-animation-name: yukari-background;
+  -ms-animation-duration: 0.9s;
+  -ms-animation-timing-function: step-start;
+  -ms-animation-iteration-count: infinite;
+}
+.yukari-preload {
+  display: none;
+}
+.yukari-2 {
+    background-image: url('images/yukari2/yukari-split-4.gif');
+    left: 0;
+    margin: -60px 0 0 -250px;
+}
+.yukari-2:active, .yukari-2 > .yukari-preload {
+  background-image: url('images/yukari2/yukari-split-5.gif'),
+    url('images/yukari2/yukari-split-6.gif'),
+    url('images/yukari2/yukari-split-7.gif'),
+    url('images/yukari2/yukari-split-8.gif'),
+    url('images/yukari2/yukari-split-9.gif'),
+    url('images/yukari2/yukari-split-10.gif');
+}
+
+@keyframes yukari-background {
+  0% {
+    left: 0;
+  }
+  10% {
+    left: -500px;
+  }
+  20% {
+    left: -1000px;
+  }
+  30% {
+    left: -1500px;
+  }
+  40% {
+    left: -2000px;
+  }
+  50% {
+    left: -2500px;
+  }
+  60% {
+    left: -2000px;
+  }
+  70% {
+    left: -1500px;
+  }
+  80% {
+    left: -1000px;
+  }
+  90% {
+    left: -500px;
+  }
+  100% {
+    left: 0;
+  }
+}
+@-webkit-keyframes yukari-background {
+  0% {
+    left: 0;
+  }
+  10% {
+    left: -500px;
+  }
+  20% {
+    left: -1000px;
+  }
+  30% {
+    left: -1500px;
+  }
+  40% {
+    left: -2000px;
+  }
+  50% {
+    left: -2500px;
+  }
+  60% {
+    left: -2000px;
+  }
+  70% {
+    left: -1500px;
+  }
+  80% {
+    left: -1000px;
+  }
+  90% {
+    left: -500px;
+  }
+  100% {
+    left: 0;
+  }
+}
+@-ms-keyframes yukari-background {
+  0% {
+    left: 0;
+  }
+  10% {
+    left: -500px;
+  }
+  20% {
+    left: -1000px;
+  }
+  30% {
+    left: -1500px;
+  }
+  40% {
+    left: -2000px;
+  }
+  50% {
+    left: -2500px;
+  }
+  60% {
+    left: -2000px;
+  }
+  70% {
+    left: -1500px;
+  }
+  80% {
+    left: -1000px;
+  }
+  90% {
+    left: -500px;
+  }
+  100% {
+    left: 0;
+  }
+}
+  </style>
+</head>
+<body>
+<div class="yukari-wrapper">
+  <div class="yukari">
+    <div class="yukari-preload"></div>
+  </div>
+</div>
+<div class="yukari-wrapper">
+  <div class="yukari-2 yukari">
+    <div class="yukari-preload"></div>
+  </div>
+</div>
+</body>
+</html>
