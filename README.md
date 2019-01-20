@@ -1,8 +1,4 @@
 # tyage.net
 
-## setup
+[![CircleCI](https://circleci.com/gh/tyage/tyage.net.svg?style=svg)](https://circleci.com/gh/tyage/tyage.net)
 
-```sh
-npm install
-npm run build
-```
