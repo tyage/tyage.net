@@ -1,4 +1,3 @@
 # tyage.net
 
-[![CircleCI](https://circleci.com/gh/tyage/tyage.net.svg?style=svg)](https://circleci.com/gh/tyage/tyage.net)
-
+![Deploy status](https://github.com/tyage/tyage.net/workflows/Deploy%20to%20firebase/badge.svg)
