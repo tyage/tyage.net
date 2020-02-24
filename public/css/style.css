@@ -1,0 +1,81 @@
+html {
+  font-size: 14px;
+  color: #333;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #0366d6;
+}
+a:hover {
+  text-decoration: underline;
+}
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0 0 0 2rem;
+}
+li {
+  margin: 0.2rem 0;
+}
+li > i {
+  padding: 0 0.4rem 0 0;
+}
+details[open] > summary {
+  display: none;
+}
+summary {
+  display: inline;
+  outline: 0;
+  cursor: pointer;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.head-content {
+  margin: 2.5rem 0 2.5rem 0;
+}
+.head-content > .title {
+  font-size: 1.8rem;
+  margin: 1.3rem 0 1rem 0;
+}
+.head-content > .profile {
+  margin: 0 0 1.3rem 0;
+  color: #666;
+}
+.identifications ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+.identifications ul li {
+  display: block;
+  margin: 0.3rem 1rem 0.3rem 0;
+}
+.sub-content {
+  margin: 1.7rem 0;
+}
+.sub-content > .title {
+  font-size: 1.4rem;
+  font-weight: normal;
+  border-bottom: 2px solid #eee;
+  padding: 0 0 0.2rem 0;
+  margin: 0 0 0.7rem 0;
+}
+.job-title {
+  font-size: 1.1rem;
+}
+.job-date {
+  font-size: 0.9rem;
+  color: #999;
+  padding: 0 0 0 0.5rem;
+}
