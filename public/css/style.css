@@ -25,9 +25,6 @@ ul {
 li {
   margin: 0.2rem 0;
 }
-li > i {
-  padding: 0 0.4rem 0 0;
-}
 details[open] > summary {
   display: none;
 }
@@ -51,15 +48,15 @@ summary::-webkit-details-marker {
   margin: 0 0 1.3rem 0;
   color: #666;
 }
-.identifications ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-}
-.identifications ul li {
-  display: block;
+.identifications p {
+  display: inline-block;
   margin: 0.3rem 1rem 0.3rem 0;
+}
+.identifications p > i {
+  padding: 0 0.4rem 0 0;
+}
+.identifications > details {
+  display: inline;
 }
 .sub-content {
   margin: 1.7rem 0;
