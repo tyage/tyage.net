@@ -20,7 +20,7 @@ p {
 }
 ul {
   margin: 0;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1.5rem;
 }
 li {
   margin: 0.2rem 0;
@@ -37,16 +37,27 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-.head-content {
+.profile-main {
   margin: 2.5rem 0 2.5rem 0;
 }
-.head-content > .title {
-  font-size: 1.8rem;
-  margin: 1.3rem 0 1rem 0;
+.profile-head {
+  display: flex;
+  margin: 0 0 1.2rem 0;
 }
-.head-content > .profile {
+.profile-image {
+  width: 70px;
+  height: 70px;
+  margin: 0 1rem 0 0;
+}
+.profile-name {
+  font-size: 1.8rem;
   margin: 0 0 0.5rem 0;
+}
+.profile-text {
   color: #666;
+}
+.identifications {
+  padding: 0 0 0 1rem;
 }
 .identifications p {
   display: inline-block;
@@ -58,15 +69,16 @@ summary::-webkit-details-marker {
 .identifications > details {
   display: inline;
 }
-.sub-content {
+.profile-sub {
   margin: 1.7rem 0;
+  padding: 0 0 0 0.5rem;
 }
-.sub-content > .title {
+.profile-sub > .title {
   font-size: 1.4rem;
   font-weight: normal;
   border-bottom: 2px solid #eee;
   padding: 0 0 0.2rem 0;
-  margin: 0 0 0.7rem 0;
+  margin: 0 0 0.7rem -0.5rem;
 }
 .job-title {
   font-size: 1.1rem;
