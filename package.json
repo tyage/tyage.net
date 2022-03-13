@@ -4,11 +4,12 @@
   "description": "",
   "main": "",
   "scripts": {
+    "build-salary": "ts-node cli/salary-convert.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {},
   "devDependencies": {
-    "firebase-tools": "^6.3.0"
+    "firebase-tools": "^6.3.0",
+    "ts-node": "^10.7.0"
   },
   "author": "tyage"
 }
