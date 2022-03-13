@@ -1,0 +1,1 @@
+fetch('./data/encrypted.json')
