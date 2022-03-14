@@ -1,5 +1,5 @@
 import fs from 'fs'
-import crypto from 'crypto'
+const webcrypto = require('crypto').webcrypto
 
 interface Salary {
   year: number,
@@ -9,25 +9,44 @@ interface Salary {
   image: Blob | null
 }
 
-const salaryString = fs.readFileSync('./data/salary.json')
-const salary: [Salary] = JSON.parse(salaryString.toString())
-
-// TODO: set images
-
-const keyString = process.env.SALARY_ENC_KEY
-if (keyString === undefined) {
-  console.log('set 32byte SALARY_ENC_KEY')
-  process.exit()
+const aesEncrypt = async (keyString: string, data: string) => {
+  var key = await webcrypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(keyString),
+    { name: 'AES-GCM' },
+    true,
+    ['encrypt']
+  )
+  const iv = webcrypto.getRandomValues(new Uint8Array(16))
+  const algorithm = {
+    name: 'AES-GCM',
+    iv
+  }
+  const encrypted = await webcrypto.subtle.encrypt(algorithm, key,
+    new TextEncoder().encode(data))
+  return {
+    encrypted: Buffer.from(encrypted).toString('base64'),
+    iv: Buffer.from(iv).toString('base64'),
+  }
 }
-const key = Buffer.from(keyString)
-const algorithm = 'aes-256-gcm'
-const delimiter = '$'
-const iv = crypto.randomBytes(16)
-const cipher = crypto.createCipheriv(algorithm, key, iv)
-const encrypted = cipher.update(JSON.stringify(salary), 'utf8', 'base64') + cipher.final('base64')
-const ivWithEncrypted = iv.toString('base64') + delimiter + encrypted
 
-fs.writeFileSync('./public/salary/data/encrypted.json', JSON.stringify({
-  data: ivWithEncrypted
-}))
-console.log('done')
+const main = async () => {
+  const salaryString = fs.readFileSync('./data/salary.json')
+  const salary: [Salary] = JSON.parse(salaryString.toString())
+
+  // TODO: set images
+
+  const key = process.env.SALARY_ENC_KEY
+  if (key === undefined) {
+    console.log('set 32byte SALARY_ENC_KEY')
+    process.exit()
+  }
+  const data = JSON.stringify(salary)
+  const ivWithEncrypted = await aesEncrypt(key, data)
+
+  fs.writeFileSync('./public/salary/data/encrypted.json', JSON.stringify(
+    ivWithEncrypted
+  ))
+  console.log('done')
+}
+main()
