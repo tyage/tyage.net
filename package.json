@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "build-salary": "ts-node cli/salary-convert.ts",
+    "build-salary": "ts-node cli/salary-convert.ts build",
+    "restore-salary": "ts-node cli/salary-convert.ts restore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

@@ -29,24 +29,65 @@ const aesEncrypt = async (keyString: string, data: string) => {
     iv: Buffer.from(iv).toString('base64'),
   }
 }
+const aesDecrypt = async (keyString: string, iv: string, data: string) => {
+  var key = await webcrypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(keyString),
+    { name: 'AES-GCM' },
+    true,
+    ['decrypt']
+  )
+  const algorithm = {
+    name: 'AES-GCM',
+    iv: Buffer.from(iv, 'base64')
+  }
+  const decrypted = await webcrypto.subtle.decrypt(algorithm, key,
+    Buffer.from(data, 'base64'))
+  return new TextDecoder().decode(decrypted)
+}
 
-const main = async () => {
-  const salaryString = fs.readFileSync('./data/salary.json')
+const dataFile = './data/salary.json'
+const encryptedFile = './public/salary/data/encrypted.json'
+const build = async (key: string) => {
+  const salaryString = fs.readFileSync(dataFile)
   const salary: [Salary] = JSON.parse(salaryString.toString())
 
   // TODO: set images
 
+  const data = JSON.stringify(salary)
+  const ivWithEncrypted = await aesEncrypt(key, data)
+
+  fs.writeFileSync(encryptedFile, JSON.stringify(
+    ivWithEncrypted
+  ))
+  console.log('done')
+}
+const restore = async (key: string) => {
+  const ivWithEncrypted = JSON.parse(fs.readFileSync(encryptedFile).toString())
+
+  const salaryString = await aesDecrypt(key, ivWithEncrypted.iv, ivWithEncrypted.encrypted)
+  const salary: [Salary] = JSON.parse(salaryString)
+
+  // TODO: restore images
+
+  fs.writeFileSync(dataFile, JSON.stringify(salary, null, 2))
+  console.log('done')
+}
+
+const main = async () => {
   const key = process.env.SALARY_ENC_KEY
   if (key === undefined) {
     console.log('set 32byte SALARY_ENC_KEY')
     process.exit()
   }
-  const data = JSON.stringify(salary)
-  const ivWithEncrypted = await aesEncrypt(key, data)
-
-  fs.writeFileSync('./public/salary/data/encrypted.json', JSON.stringify(
-    ivWithEncrypted
-  ))
-  console.log('done')
+  const mode = process.argv[process.argv.length - 1]
+  switch (mode) {
+    case 'build':
+      await build(key);
+      break;
+    case 'restore':
+      await restore(key);
+      break;
+  }
 }
 main()
