@@ -27,11 +27,11 @@ const buildSalaryTable = (salaries) => {
     const year = document.createElement('td')
     year.innerText = salary.year
     const baseStart = document.createElement('td')
-    baseStart.innerText = salary.baseStart
+    baseStart.innerText = salary.baseStart?.toLocaleString() ?? ''
     const baseEnd = document.createElement('td')
-    baseEnd.innerText = salary.baseEnd
+    baseEnd.innerText = salary.baseEnd?.toLocaleString() ?? ''
     const bonus = document.createElement('td')
-    bonus.innerText = salary.bonus
+    bonus.innerText = salary.bonus?.toLocaleString() ?? ''
     tr.appendChild(year)
     tr.appendChild(baseStart)
     tr.appendChild(baseEnd)
