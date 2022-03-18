@@ -6,7 +6,7 @@ interface Salary {
   baseStart: number,
   baseEnd: number | null,
   bonus: number | null,
-  image: Blob | null
+  image: string | null
 }
 
 const aesEncrypt = async (keyString: string, data: string) => {
@@ -50,11 +50,16 @@ const dataFile = './data/salary.json'
 const encryptedFile = './public/salary/data/encrypted.json'
 const build = async (key: string) => {
   const salaryString = fs.readFileSync(dataFile)
-  const salary: [Salary] = JSON.parse(salaryString.toString())
+  const salaries: [Salary] = JSON.parse(salaryString.toString())
 
-  // TODO: set images
+  for (let salary of salaries) {
+    const file = `./data/${salary.year}.png`
+    if (fs.existsSync(file)) {
+      salary.image = fs.readFileSync(`./data/${salary.year}.png`).toString('base64')
+    }
+  }
 
-  const data = JSON.stringify(salary)
+  const data = JSON.stringify(salaries)
   const ivWithEncrypted = await aesEncrypt(key, data)
 
   fs.writeFileSync(encryptedFile, JSON.stringify(
@@ -66,11 +71,17 @@ const restore = async (key: string) => {
   const ivWithEncrypted = JSON.parse(fs.readFileSync(encryptedFile).toString())
 
   const salaryString = await aesDecrypt(key, ivWithEncrypted.iv, ivWithEncrypted.encrypted)
-  const salary: [Salary] = JSON.parse(salaryString)
+  const salaries: [Salary] = JSON.parse(salaryString)
 
   // TODO: restore images
+  for (let salary of salaries) {
+    const file = `./data/${salary.year}.png`
+    if (salary.image !== null) {
+      fs.writeFileSync(file, Buffer.from(salary.image, 'base64'))
+    }
+  }
 
-  fs.writeFileSync(dataFile, JSON.stringify(salary, null, 2))
+  fs.writeFileSync(dataFile, JSON.stringify(salaries, null, 2))
   console.log('done')
 }
 

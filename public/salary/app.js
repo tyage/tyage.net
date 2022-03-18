@@ -25,7 +25,17 @@ const buildSalaryTable = (salaries) => {
   for (salary of salaries) {
     const tr = document.createElement('tr')
     const year = document.createElement('td')
-    year.innerText = salary.year
+    if (salary.image) {
+      const blob = new Blob([base64ToUint8Array(salary.image)], {type : 'image/png'})
+      const url = URL.createObjectURL(blob)
+      const yearLink = document.createElement('a')
+      yearLink.innerText = salary.year
+      yearLink.href = url
+      yearLink.target = '_blank'
+      year.appendChild(yearLink)
+    } else {
+      year.innerText = salary.year
+    }
     const baseStart = document.createElement('td')
     baseStart.innerText = salary.baseStart?.toLocaleString() ?? ''
     const baseEnd = document.createElement('td')
