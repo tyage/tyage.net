@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
-    "firebase-tools": "^10.3.1",
+    "firebase-tools": "^11.22.0",
     "ts-node": "^10.7.0"
   },
   "author": "tyage"
