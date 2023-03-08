@@ -6,6 +6,7 @@ interface Salary {
   baseStart: number,
   baseEnd: number | null,
   bonus: number | null,
+  total: number | null,
   image: string | null
 }
 
@@ -56,6 +57,8 @@ const build = async (key: string) => {
     const file = `./data/${salary.year}.png`
     if (fs.existsSync(file)) {
       salary.image = fs.readFileSync(`./data/${salary.year}.png`).toString('base64')
+    } else {
+      salary.image = null
     }
   }
 
@@ -76,7 +79,7 @@ const restore = async (key: string) => {
   // TODO: restore images
   for (let salary of salaries) {
     const file = `./data/${salary.year}.png`
-    if (salary.image !== null) {
+    if (salary.image !== null && salary.image !== undefined) {
       fs.writeFileSync(file, Buffer.from(salary.image, 'base64'))
     }
   }
