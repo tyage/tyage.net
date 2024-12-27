@@ -23,7 +23,7 @@ ul {
   padding: 0 0 0 1.5rem;
 }
 li {
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
 }
 details[open] > summary {
   display: none;
@@ -72,19 +72,27 @@ summary::-webkit-details-marker {
 .profile-sub {
   margin: 1.7rem 0;
   padding: 0 0 0 0.5rem;
-}
-.profile-sub > .title {
-  font-size: 1.4rem;
-  font-weight: normal;
-  border-bottom: 2px solid #eee;
-  padding: 0 0 0.2rem 0;
-  margin: 0 0 0.7rem -0.5rem;
-}
-.job-title {
-  font-size: 1.1rem;
-}
-.job-date {
-  font-size: 0.9rem;
-  color: #999;
-  padding: 0 0 0 0.5rem;
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: normal;
+    border-bottom: 2px solid #eee;
+    padding: 0 0 0.2rem 0;
+    margin: 0 0 0.7rem -0.5rem;
+  }
+
+  .timeline {
+    display: flex;
+    align-items: center;
+    margin: 0.3rem 0;
+
+    .timeline-title {
+      font-size: 1.1rem;
+    }
+    .timeline-date {
+      font-size: 0.9rem;
+      color: #999;
+      padding: 0 0 0 1rem;
+    }
+  }
 }
