@@ -83,7 +83,7 @@ summary::-webkit-details-marker {
 
   .timeline {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     margin: 0.3rem 0;
 
     .timeline-title {
